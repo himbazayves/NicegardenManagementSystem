@@ -17,6 +17,14 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+
+    public function usarable()
+    {
+        return $this->morphTo();
+    }
+
+    
     protected $fillable = [
         'name', 'email', 'password',
     ];

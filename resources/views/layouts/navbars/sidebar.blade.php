@@ -98,6 +98,15 @@
                     </ul>
                 </div>
             </li>
+            
+            <li @if ($pageSlug == 'clients') class="active " @endif>
+                <a href="{{ route('requests.index') }}">
+                    <i class="tim-icons icon-single-02"></i>
+                    <p>Product request</p>
+                </a>
+            </li>
+
+           
 
             <li @if ($pageSlug == 'clients') class="active " @endif>
                 <a href="{{ route('clients.index') }}">
