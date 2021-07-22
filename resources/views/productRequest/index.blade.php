@@ -20,34 +20,30 @@
                     <div class="">
                         <table class="table tablesorter " id="">
                             <thead class=" text-primary">
-                                <th scope="col">Name</th>
+                                <td>Date</td>
+                                <th scope="col">Title</th>
+                                {{-- <th scope="col">Requested to</th> --}}
                                 <th scope="col">Description</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Telephone</th>
-                                <th scope="col">Payments Made</th>
-                                <th scope="col">Total Payment</th>
                                 <th scope="col"></th>
+                                
                             </thead>
                             <tbody>
-                                @foreach ($productRequests as $provider)
+                                @foreach ($productRequests as $request)
                                     <tr>
-                                        <td>{{ $provider->name }}</td>
-                                        <td>{{ $provider->description }}</td>
-
-                                        <td>
-                                            <a href="mailto:{{ $provider->email }}">{{ $provider->email }}</a>
-                                        </td>
-                                        <td>{{ $provider->phone }}</td>
-                                        <td>{{ $provider->transactions->count() }}</td>
-                                        <td>{{ format_money(abs($provider->transactions->sum('amount'))) }}</td>
+                                        <td>{{$request->created_at->diffForHumans()}}</td>
+                                        <td>{{ $request->title }}</td>
+                                        {{-- <td>{{$request->userable->names}}</td> --}}
+                                        {{-- <td>{{ $request->description }}</td> --}}
+                                        <td>{!! $request->description !!}</td>
+                                       
                                         <td class="td-actions text-right">
-                                            <a href="{{ route('providers.show', $provider) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">
+                                            <a href="{{ route('requests.show', $request) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">
                                                 <i class="tim-icons icon-zoom-split"></i>
                                             </a>
-                                            <a href="{{ route('providers.edit', $provider) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Provider">
+                                            <a href="{{ route('requests.edit', $request) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Provider">
                                                 <i class="tim-icons icon-pencil"></i>
                                             </a>
-                                            <form action="{{ route('providers.destroy', $provider) }}" method="post" class="d-inline">
+                                            <form action="{{ route('requests.destroy', $request) }}" method="post" class="d-inline">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Provider" onclick="confirm('Are you sure you want to delete this provider? Records of payments made to him will not be deleted.') ? this.parentElement.submit() : ''">

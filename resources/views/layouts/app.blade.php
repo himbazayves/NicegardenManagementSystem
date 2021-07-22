@@ -8,7 +8,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ $page }} - {{ config('app.name') }}</title> 
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@100;200;300;400;500;600&display=swap" rel="stylesheet"> 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.css" rel="stylesheet">
@@ -19,6 +19,7 @@
         <!-- CSS -->
         <link href="{{ asset('assets') }}/css/white-dashboard.css?v=1.0.0" rel="stylesheet" />
         <link href="{{ asset('assets') }}/css/theme.css" rel="stylesheet" />
+        {{-- <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script> --}}
     </head>
     <body class="white-content {{ $class ?? '' }}">
         @auth()
@@ -170,5 +171,56 @@
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
         @stack('js')
+        <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.ckeditor').ckeditor();
+    });
+
+    // https://www.positronx.io/how-to-install-integrate-ckeditor-in-laravel/
+</script>
+
+
+
+
+
+<script type=text/javascript>
+
+  $('#requestTo').on('change',function(){
+  var stateID = $(this).val();  
+  if(stateID){
+    $.ajax({
+      type:"GET",
+      dataType: "json",
+    
+
+      url: '/getCity/'+stateID,
+      res: { get_param: 'value' },
+           
+      success:function(res){        
+      if(res){
+        $("#person").empty();
+ $("#person").append('<option>Select the person</option>');
+        $.each(res,function(key,value){
+          $("#person").append('<option value="'+value['id']+'">'+value['name']+'</option>');
+       
+        });
+
+        
+      
+      }else{
+        $("#person").empty();
+      }
+      }
+    });
+  }else{
+    $("#person").empty();
+  }
+    
+  });
+</script>
+
+
+
     </body>
 </html>

@@ -69,3 +69,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('tables', ['as' => 'pages.tables', 'uses' => 'PageController@tables']);
     Route::get('typography', ['as' => 'pages.typography', 'uses' => 'PageController@typography']);
 });
+
+
+//Route::get('/myform',array('as'=>'myform','uses'=>'ProductRequestController@myform'));
+
+Route::get('/myform/ajax/{id}',array('as'=>'myform.ajax','uses'=>'ProductRequest@myformAjax'));
+Route::get('getState',[DropdownController::class, 'getState'])->name('getState');
+// Route::get('getCity',array('as'=>'myform','uses'=>'ProductRequestController@myform'));
+Route::get('getCity/{id}',array('as'=>'myform','uses'=>'ProductRequestController@myform'));

@@ -20,36 +20,51 @@
 
                             <h6 class="heading-small text-muted mb-4">Request Information</h6>
                             <div class="pl-lg-4">
-                                <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-name">Name</label>
-                                    <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Name" value="{{ old('name') }}" required autofocus>
-                                    @include('alerts.feedback', ['field' => 'name'])
+                                <div class="form-group{{ $errors->has('title') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-name">Title</label>
+                                    <input type="text" name="title" id="input-name" class="form-control form-control-alternative{{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="Name" value="{{ old('title') }}" required autofocus>
+                                    @include('alerts.feedback', ['field' => 'title'])
                                 </div>
 
-                                <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-description">Description</label>
-                                    <input type="text" name="description" id="input-description" class="form-control form-control-alternative{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Description" value="{{ old('description') }}" required>
+                                <div class="form-group{{ $errors->has('resquestTo') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-description">Request to</label>
+                                    <select type="text" name="requestTo" id="requestTo" class="form-control form-control-alternative{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Description" required>
+                                        <option value="">Select who you want to request</option>
+                                        <option value="chef">Chef</option>
+                                        <option value="restoChef">Restaurent</option>
+                                        <option value="waiter">Waiter</option>
+                                        <option value="stockManager">Stock Manager</option>
+                                        <option value="accountant">Accountant</option>
+                                        <option value="houseKeeper">House keeper</option>
+                                        
+                                    </select>    
+                                    @include('alerts.feedback', ['field' => 'requestTo'])
+                                </div>
+
+                                <div class="form-group{{ $errors->has('person') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-description">Select person </label>
+                                    <select type="text" name="person" id="person" class="form-control form-control-alternative{{ $errors->has('person') ? ' is-invalid' : '' }}"  required>
+                                        {{-- <option value="">Select who you want to request</option> --}}
+                                        
+                                        
+                                    </select>    
+                                    @include('alerts.feedback', ['field' => 'requestTo'])
+                                </div>
+
+                               
+                                <div class="form-group{{ $errors->has('reference') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-phone">Reference</label>
+                                    <input type="text" name="reference" id="input-phone" class="form-control form-control-alternative{{ $errors->has('reference') ? ' is-invalid' : '' }}" placeholder="Reference" value="{{ old('reference') }}" required>
+                                    @include('alerts.feedback', ['field' => 'reference'])
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">Description</label>
+                                    <textarea class="ckeditor form-control " name="description"></textarea>
                                     @include('alerts.feedback', ['field' => 'description'])
                                 </div>
 
-                                <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-email">Email</label>
-                                    <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Email" value="{{ old('email') }}" required>
-                                    @include('alerts.feedback', ['field' => 'email'])
-                                </div>
-                                <div class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-phone">Telephone</label>
-                                    <input type="phone" name="phone" id="input-phone" class="form-control form-control-alternative{{ $errors->has('phone') ? ' is-invalid' : '' }}" placeholder="Telephone" value="{{ old('phone') }}" required>
-                                    @include('alerts.feedback', ['field' => 'phone'])
-                                </div>
-                                <div class="form-group{{ $errors->has('paymentinfo') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-paymentinfo">Payment information</label>
-                                    <textarea name="paymentinfo" id="input-paymentinfo" class="form-control form-control-alternative{{ $errors->has('paymentinfo') ? ' is-invalid' : '' }}" placeholder="Payment information" value="{{ old('paymentinfo') }}" required></textarea>
-                                    @include('alerts.feedback', ['field' => 'paymentinfo'])
-                                </div>
-
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success mt-4">Save</button>
+                                    <button type="submit" class="btn btn-success mt-4">Send</button>
                                 </div>
                             </div>
                         </form>

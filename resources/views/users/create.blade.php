@@ -31,7 +31,25 @@
                                     <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email') }}" required>
                                     @include('alerts.feedback', ['field' => 'email'])
                                 </div>
-                                <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
+
+                                <div class="form-group{{ $errors->has('userable_type') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="userable_type">User type</label>
+                                    <select name="userable_type" id="userable_type" class="form-control form-control-alternative{{ $errors->has('userable_type') ? ' is-invalid' : '' }}"  required>
+                                    
+                                      <option value="" disabled>Select user Type</option>
+                                      <option value="chef">Chef</option>
+                                      <option value="houseKepper">House Keeper</option>
+                                      <option value="restoChef">Restaurent Cheif</option>
+                                      <option value="admin">Admin</option>
+                                      <option value="waiter">waiter</option>
+                                      <option value="stockManager">Stock Manager</option>
+                                      <option value="accountant">Accountant</option>
+                                     </select>
+                                    @include('alerts.feedback', ['field' => 'userable_type'])
+                                </div>
+
+
+                                {{-- <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-password">{{ __('Password') }}</label>
                                     <input type="password" name="password" id="input-password" class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('Password') }}" value="" required>
                                     @include('alerts.feedback', ['field' => 'password'])
@@ -39,7 +57,7 @@
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-password-confirmation">{{ __('Confirm Password') }}</label>
                                     <input type="password" name="password_confirmation" id="input-password-confirmation" class="form-control form-control-alternative" placeholder="{{ __('Confirm Password') }}" value="" required>
-                                </div>
+                                </div> --}}
 
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
