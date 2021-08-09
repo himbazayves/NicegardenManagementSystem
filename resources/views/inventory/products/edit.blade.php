@@ -22,25 +22,22 @@
 
                             <h6 class="heading-small text-muted mb-4">Product Information</h6>
                             <div class="pl-lg-4">
-                                <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
-                                    <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('name', $product->name) }}" required autofocus>
-                                    @include('alerts.feedback', ['field' => 'name'])
-                                </div>
 
-                                <div class="form-group{{ $errors->has('product_category_id') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-name">Category</label>
-                                    <select name="product_category_id" id="input-category" class="form-select form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" required>
-                                        @foreach ($categories as $category)
-                                            @if($category['id'] == old('document') or $category['id'] == $product->product_category_id)
-                                                <option value="{{$category['id']}}" selected>{{$category['name']}}</option>
+                                <div class="form-group{{ $errors->has('product') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-name">Seclect product type</label>
+                                    <select name="product" id="product" class="form-select form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" required>
+                                        @foreach ($produtLists as $produtList)
+                                            @if($produtList['id'] == old('document'))
+                                                <option value="{{$produtList['id']}}" selected>{{$produtList['name']}} </option>
                                             @else
-                                                <option value="{{$category['id']}}">{{$category['name']}}</option>
+                                                <option value="{{$produtList['id']}}">{{$produtList['name']}}</option>
                                             @endif
                                         @endforeach
                                     </select>
                                     @include('alerts.feedback', ['field' => 'product_category_id'])
                                 </div>
+
+                              
 
 
                                 <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">

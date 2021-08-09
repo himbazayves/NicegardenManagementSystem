@@ -30,4 +30,10 @@ class ProductRequest extends Model
     public function houseKeeper() {
         return $this->belongsTo('App\HouseKeeper');
     }
+
+
+    public function requestedTo()
+    {
+        return $this->belongsTo('App\User', 'requested_to');
+    }
 }

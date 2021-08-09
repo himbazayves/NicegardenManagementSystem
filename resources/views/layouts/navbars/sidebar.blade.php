@@ -8,6 +8,9 @@
                 </a>
             </li>
             <li>
+
+            {{-- Admin sidebar --}}
+            @if(Auth::user()->userable_type=="App\Admin")
                 <a data-toggle="collapse" href="#transactions" {{ $section == 'transactions' ? 'aria-expanded=true' : '' }}>
                     <i class="tim-icons icon-bank" ></i>
                     <span class="nav-link-text">Transactions</span>
@@ -77,10 +80,18 @@
                                 <p>Statistics</p>
                             </a>
                         </li>
+
+                        <li @if ($pageSlug == 'productsList') class="active " @endif>
+                            <a href="{{ route('productsList.index') }}">
+                                <i class="tim-icons icon-notes"></i>
+                                <p>Products list</p>
+                            </a>
+                        </li>
+
                         <li @if ($pageSlug == 'products') class="active " @endif>
                             <a href="{{ route('products.index') }}">
                                 <i class="tim-icons icon-notes"></i>
-                                <p>Products</p>
+                                <p>Product Stock</p>
                             </a>
                         </li>
                         <li @if ($pageSlug == 'categories') class="active " @endif>
@@ -99,12 +110,37 @@
                 </div>
             </li>
             
-            <li @if ($pageSlug == 'clients') class="active " @endif>
-                <a href="{{ route('requests.index') }}">
-                    <i class="tim-icons icon-single-02"></i>
-                    <p>Product request</p>
+            
+
+
+            <li>
+                <a data-toggle="collapse" href="#productRequest" {{ $section == 'productRequest' ? 'aria-expanded=true' : '' }}>
+                    <i class="tim-icons icon-gift-2"></i>
+                    <span class="nav-link-text">Product Requests</span>
+                    <b class="caret mt-1"></b>
                 </a>
+
+                <div class="collapse {{ $section == 'productRequest' ? 'show' : '' }}" id="productRequest">
+                    <ul class="nav pl-4">
+                        <li @if ($pageSlug == 'requests') class="active " @endif>
+                            <a href="{{ route('requests.index') }}">
+                                <i class="tim-icons icon-gift-2"></i>
+                                <p>All product request</p>
+                            </a>
+                        </li>
+                        
+                        <li @if ($pageSlug == 'create-requests') class="active " @endif>
+                            <a href="{{ route('requests.create') }}">
+                                <i class="tim-icons icon-simple-add"></i>
+                                <p>New product request</p>
+                            </a>
+                        </li>
+                       
+                        
+                    </ul>
+                </div>
             </li>
+            
 
            
 
@@ -185,6 +221,49 @@
                         </li>
                     </ul>
                 </div>
+
+                 {{-- end of Admin sidebar --}}
+
+                 {{-- start of other users navbar --}}
+                 @else
+
+                 <li>
+                    <a data-toggle="collapse" href="#productRequest" {{ $section == 'productRequest' ? 'aria-expanded=true' : '' }}>
+                        <i class="tim-icons icon-gift-2"></i>
+                        <span class="nav-link-text">Product Requests</span>
+                        <b class="caret mt-1"></b>
+                    </a>
+    
+                    <div class="collapse {{ $section == 'productRequest' ? 'show' : '' }}" id="productRequest">
+                        <ul class="nav pl-4">
+                            <li @if ($pageSlug == 'requests') class="active " @endif>
+                                <a href="{{ route('requests.index') }}">
+                                    <i class="tim-icons icon-gift-2"></i>
+                                    <p>All product request</p>
+                                </a>
+                            </li>
+                            <li @if ($pageSlug == 'my_requests') class="active " @endif>
+                                <a href="{{ route('requests.my_requests') }}">
+                                    <i class="tim-icons icon-gift-2"></i>
+                                    <p>My requested product</p>
+                                </a>
+                            </li>
+                            <li @if ($pageSlug == 'create_requests') class="active " @endif>
+                                <a href="{{ route('requests.create') }}">
+                                    <i class="tim-icons icon-simple-add"></i>
+                                    <p>New product request</p>
+                                </a>
+                            </li>
+                           
+                            
+                        </ul>
+                    </div>
+                </li>
+
+
+                 @endif
+
+                  {{-- end of start of other users navbar --}}
             </li>
         </ul>
     </div>

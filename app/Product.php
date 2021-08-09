@@ -18,6 +18,8 @@ class Product extends Model
         return $this->belongsTo('App\ProductCategory', 'product_category_id')->withTrashed();
     }
 
+   
+
     public function solds()
     {
         return $this->hasMany('App\SoldProduct');

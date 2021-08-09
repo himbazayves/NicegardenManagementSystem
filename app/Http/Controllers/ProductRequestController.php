@@ -23,9 +23,36 @@ class ProductRequestController extends Controller
      */
     public function index()
     {
-        $productRequests = productRequest::latest()->paginate(2);
+        // $productRequests = productRequest::latest()->paginate(25);
+        $user=Auth::user();
+        if($user->userable_type=="App\Admin"){
+            $productRequests = productRequest::latest()->paginate(25);  
+            return view('productRequest.index',['productRequests'=>$productRequests] ); 
+        }
+        else{
 
-        return view('productRequest.index', compact('productRequests'));
+       
+       
+        $myRequests = productRequest::Where("user_id", $user->id)->latest()->paginate(25);   
+           
+              
+        $requestedProducts = productRequest::Where("requested_to", $user->id)->latest()->paginate(25);
+       
+        return view('productRequest.index',['requestedProducts'=>$requestedProducts,'myRequests'=>$myRequests] );
+        }
+
+        
+    }
+
+
+    public function my_requests()
+    {
+        // $productRequests = productRequest::latest()->paginate(25);
+        $user=Auth::user();
+       
+        $productRequests = productRequest::Where("user_id", $user->id)->latest()->paginate(25);   
+       
+        return view('productRequest.my', compact('productRequests'));
     }
 
     /**
@@ -56,38 +83,8 @@ class ProductRequestController extends Controller
         ]);
    
         $requestProduct= new ProductRequest;
-        if($request->requestTo=="chef"){
-            $requestProduct->chef_id=find::User($request->person)->userable->id;
-            }
-    
-            elseif($request->requestTo=="waiter"){
-             $requestProduct->waiter_id=User::find($request->person)->userable->id;
-
-                
-    
-            }
-            elseif($request->requestTo=="stockManager"){
-                $requestProduct->stock_manager_id=User::find($request->person)->userable->id;
-    
-            }
-            elseif($request->requestTo=="restoChef"){
-                $requestProduct->resto_chef_id=User::find($request->person)->userable->id;
-    
-            }
-    
-            elseif($request->requestTo=="houseKeeper"){
-                $requestProduct->house_keeper_id=User::find($request->person)->userable->id;
-    
-            }
-            elseif($request->requestTo=="waiter"){
-                $requestProduct->waiter_id=User::find($request->person)->userable->id;
-    
-            }
-    
-            else{
-                $requestProduct->accountant_id=User::find($request->person)->userable->id;
-    
-            }
+       
+            $requestProduct->requested_to=$request->person;
             $requestProduct->description=$request->description;
             $requestProduct->title=$request->title;
             $requestProduct->reference=$request->reference;
@@ -107,7 +104,9 @@ class ProductRequestController extends Controller
      */
     public function show($id)
     {
-        //
+        $productRequest = ProductRequest::find($id);
+
+        return view('productRequest.show', compact('productRequest'));
     }
 
     /**

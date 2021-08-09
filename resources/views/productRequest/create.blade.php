@@ -1,4 +1,5 @@
-@extends('layouts.app', ['page' => 'New Provider', 'pageSlug' => 'provider', 'section' => 'providers'])
+{{-- @extends('layouts.app', ['page' => 'New Request', 'pageSlug' => 'request', 'section' => 'requests']) --}}
+@extends('layouts.app', ['page' => __('Request Management'), 'pageSlug' => 'create_requests', 'section' => 'requests'])
 @section('content')
     <div class="container-fluid mt--7">
         <div class="row">

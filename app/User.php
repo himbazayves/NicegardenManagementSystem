@@ -24,6 +24,9 @@ class User extends Authenticatable
         return $this->morphTo();
     }
 
+    public function productRequests() {
+        return $this->hasMany('App\ProductRequests');
+    }
     
     protected $fillable = [
         'name', 'email', 'password',

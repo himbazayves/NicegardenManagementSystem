@@ -12,6 +12,8 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@100;200;300;400;500;600&display=swap" rel="stylesheet"> 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.css" rel="stylesheet">
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script> --}}
+
 
         <!-- Icons -->
         <link href="{{ asset('assets') }}/css/nucleo-icons.css" rel="stylesheet" />
@@ -182,6 +184,8 @@
 
 
 
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
 
 
 <script type=text/javascript>
@@ -219,7 +223,124 @@
     
   });
 </script>
+ {{-- <script>
 
+var doc = new jsPDF();
+var specialElementHandlers = {
+    '#editor': function (element, renderer) {
+        return true;
+    }
+};
+
+$('#cmd').click(function () {   
+    doc.fromHTML($('#content').html(), 15, 15, {
+        'width': 170,
+            'elementHandlers': specialElementHandlers
+    });
+    doc.save('sample-file.pdf');
+});
+</script> --}}
+
+
+<script>
+    (function () {
+        var
+         form = $('.form'),
+         cache_width = form.width(),
+         a4 = [595.28, 841.89]; // for a4 size paper width and height
+
+        $('#create_pdf').on('click', function () {
+            $('body').scrollTop(0);
+            // $('#table');
+            createPDF();
+        });
+        //create pdf
+        function createPDF() {
+            getCanvas().then(function (canvas) {
+                var
+                 img = canvas.toDataURL("image/png"),
+                 doc = new jsPDF({
+                     unit: 'px',
+                     format: 'a4'
+                 });
+                doc.addImage(img, 'JPEG', 20, 20);
+                doc.save('bhavdip-html-to-pdf.pdf');
+                form.width(cache_width);
+            });
+        }
+
+        // create canvas object
+        function getCanvas() {
+            form.width((a4[0] * 1.33333) - 80).css('max-width', 'none');
+            return html2canvas(form, {
+                imageTimeout: 2000,
+                removeContainer: true
+            });
+        }
+
+    }());
+</script>
+<script>
+    (function ($) {
+        $.fn.html2canvas = function (options) {
+            var date = new Date(),
+            $message = null,
+            timeoutTimer = false,
+            timer = date.getTime();
+            html2canvas.logging = options && options.logging;
+            html2canvas.Preload(this[0], $.extend({
+                complete: function (images) {
+                    var queue = html2canvas.Parse(this[0], images, options),
+                    $canvas = $(html2canvas.Renderer(queue, options)),
+                    finishTime = new Date();
+
+                    $canvas.css({ position: 'absolute', left: 0, top: 0 }).appendTo(document.body);
+                    $canvas.siblings().toggle();
+
+                    $(window).click(function () {
+                        if (!$canvas.is(':visible')) {
+                            $canvas.toggle().siblings().toggle();
+                            throwMessage("Canvas Render visible");
+                        } else {
+                            $canvas.siblings().toggle();
+                            $canvas.toggle();
+                            throwMessage("Canvas Render hidden");
+                        }
+                    });
+                    throwMessage('Screenshot created in ' + ((finishTime.getTime() - timer) / 1000) + " seconds<br />", 4000);
+                }
+            }, options));
+
+            function throwMessage(msg, duration) {
+                window.clearTimeout(timeoutTimer);
+                timeoutTimer = window.setTimeout(function () {
+                    $message.fadeOut(function () {
+                        $message.remove();
+                    });
+                }, duration || 2000);
+                if ($message)
+                    $message.remove();
+                $message = $('<div ></div>').html(msg).css({
+                    margin: 0,
+                    padding: 10,
+                    background: "#000",
+                    opacity: 0.7,
+                    position: "fixed",
+                    top: 10,
+                    right: 10,
+                    fontFamily: 'Tahoma',
+                    color: '#fff',
+                    fontSize: 12,
+                    borderRadius: 12,
+                    width: 'auto',
+                    height: 'auto',
+                    textAlign: 'center',
+                    textDecoration: 'none'
+                }).hide().fadeIn().appendTo('body');
+            }
+        };
+    })(jQuery);
+</script>
 
 
     </body>

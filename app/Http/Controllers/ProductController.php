@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\ProductCategory;
+use App\ProductList;
 use App\Http\Requests\ProductRequest;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -27,9 +29,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = ProductCategory::all();
+        // $categories = ProductCategory::all();
+        $produtLists= ProductList::all();
 
-        return view('inventory.products.create', compact('categories'));
+        return view('inventory.products.create', compact('produtLists'));
     }
 
     /**
@@ -39,9 +42,27 @@ class ProductController extends Controller
      * @param  App\Product  $model
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request, Product $model)
+    // public function store(ProductRequest $request, Product $model)
+    public function store(Request $request)
     {
-        $model->create($request->all());
+        // $model->create($request->all());
+
+        $request->validate([
+         'product'=>'required',
+         'stock'=>'required',
+         'stock_defective'=>"required",
+        ]);
+
+        $productType=ProductList::find($request->product);
+        $product = new Product;
+        $product->stock=$request->stock;
+        $product->description=$request->description;
+        $product->stock_defective=$request->stock_defective;
+        $product->price=$productType->price;
+        $product->name=$productType->name;
+        $product->product_category_id=$productType->product_category_id;
+        $product->save();
+
 
         return redirect()
             ->route('products.index')
@@ -71,9 +92,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $categories = ProductCategory::all();
+        $produtLists= ProductList::all();
 
-        return view('inventory.products.edit', compact('product', 'categories'));
+        return view('inventory.products.edit', compact('produtLists', 'product'));
     }
 
     /**
@@ -105,5 +126,12 @@ class ProductController extends Controller
         return redirect()
             ->route('products.index')
             ->withStatus('Product removed successfully.');
+    }
+
+
+
+    public function topUp(Request $request)
+    {
+        echo "hi";
     }
 }

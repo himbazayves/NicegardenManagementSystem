@@ -61,6 +61,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     
     Route::resource('requests', 'ProductRequestController');
+    Route::resource('productsList', 'ProductListController');
+    // Route::get('requests/my_requests', ['ProductRequestController@my_requests'])->name("requests.my_requests");
+    // Route::get('requests/my_requests', ['ProductRequestController@my_requests'])->name("requests.my_requests");
+    // Route::get('requests/my_requests', ['ProductRequestController@my_requests'])->name("requests.my_requests");
+    // Route::get('requests/my_requests', ['ProductRequestController@my_requests'])->name("requests.my_requests");
+    Route::get('requests/my_requests', ['ProductRequestController@my_requests'])->name("requests.my_requests");
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -77,3 +83,4 @@ Route::get('/myform/ajax/{id}',array('as'=>'myform.ajax','uses'=>'ProductRequest
 Route::get('getState',[DropdownController::class, 'getState'])->name('getState');
 // Route::get('getCity',array('as'=>'myform','uses'=>'ProductRequestController@myform'));
 Route::get('getCity/{id}',array('as'=>'myform','uses'=>'ProductRequestController@myform'));
+Route::post('product/topUp/', ['as' => 'products.topUp', 'uses' => 'ProductController@topUp']);
