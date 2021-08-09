@@ -21,7 +21,7 @@ class ReceiptController extends Controller
     public function index()
     {
         $receipts = Receipt::paginate(25);
-
+        
         return view('inventory.receipts.index', compact('receipts'));
     }
 

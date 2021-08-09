@@ -22,13 +22,23 @@
                             <th>Title</th>
                             <th>Provider</th>
                             <th>products</th>
+                            
                             <th>Stock</th>
                             <th>Defective Stock</th>
+                            <th>Amount</th>
                             <th>Status</th>
                             <th></th>
                         </thead>
                         <tbody>
                             @foreach ($receipts as $receipt)
+
+                            @php
+                                $amount=0;
+                                foreach($receipt->products as $product){
+                                   $amount= $amount+ $product->stock * $product->product->price;
+                                }
+
+                            @endphp
                                 <tr>
                                     <td>{{ date('d-m-y', strtotime($receipt->created_at)) }}</td>
                                     <td style="max-width:150px">{{ $receipt->title }}</td>
@@ -42,6 +52,7 @@
                                     <td>{{ $receipt->products->count() }}</td>
                                     <td>{{ $receipt->products->sum('stock') }}</td>
                                     <td>{{ $receipt->products->sum('stock_defective') }}</td>
+                                    <th>{{ $amount }}</th>
                                     <td>
                                         @if($receipt->finalized_at)
                                             FINALIZED

@@ -82,7 +82,7 @@
                                                 @csrf
                                                 <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
                                                     <label class="form-control-label" for="input-description">Top up amount</label>
-                                                    <input type="text" name="stock" id="input-description" class="form-control form-control-alternative" placeholder="Description" value="{{ old('stock') }}" required>
+                                                    <input type="text" name="stock" id="{{$product->name }}" class="form-control form-control-alternative" placeholder="Description" value="{{ old('stock') }}" required>
                                                     @include('alerts.feedback', ['field' => 'stock'])
                                                 </div>
                                                   <button class="btn btn-primary">Top up</button>
