@@ -105,7 +105,15 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ProductRequest $request, Product $product)
-    {
+    {   
+        // if($request->topUp !=""){
+        //  $updatedStock=$product->stock + $request->topUp;
+        //  $product->stock=$updatedStock;
+        //  $product->save();
+        //  return redirect()
+        //     ->route('products.index')
+        //     ->withStatus('Product stock toped up successfully.');
+        // }
         $product->update($request->all());
 
         return redirect()
@@ -130,8 +138,24 @@ class ProductController extends Controller
 
 
 
-    public function topUp(Request $request)
+    public function topUp($id)
     {
-        echo "hi";
+        $product=Product::find($id);
+     
+
+        return view('inventory.products.topUp', compact('product'));
+    }
+
+    public function topUpInsert(Request $request, $id){
+        $request->validate([
+            "stock"=>"required"
+        ]);
+        $product=Product::find($id);
+        $updatedStock=$product->stock + $request->stock;
+        $product->stock=$updatedStock;
+        $product->save();
+        return redirect()
+           ->route('products.index')
+           ->withStatus('Product stock toped up successfully.');
     }
 }

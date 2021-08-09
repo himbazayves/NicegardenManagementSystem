@@ -83,4 +83,6 @@ Route::get('/myform/ajax/{id}',array('as'=>'myform.ajax','uses'=>'ProductRequest
 Route::get('getState',[DropdownController::class, 'getState'])->name('getState');
 // Route::get('getCity',array('as'=>'myform','uses'=>'ProductRequestController@myform'));
 Route::get('getCity/{id}',array('as'=>'myform','uses'=>'ProductRequestController@myform'));
-Route::post('product/topUp/', ['as' => 'products.topUp', 'uses' => 'ProductController@topUp']);
+// Route::post('product/topUp/', ['as' => 'products.topUp', 'uses' => 'ProductController@topUp']);
+Route::get('product/topUp/{id}', ['as' => 'products.stock.topUp', 'uses' => 'ProductController@topUp']);
+Route::post('product/topUpInsert/{id}', ['as' => 'products.stock.topUpInsert', 'uses' => 'ProductController@topUpInsert']);
