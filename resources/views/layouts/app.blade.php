@@ -22,6 +22,8 @@
         <link href="{{ asset('assets') }}/css/white-dashboard.css?v=1.0.0" rel="stylesheet" />
         <link href="{{ asset('assets') }}/css/theme.css" rel="stylesheet" />
         {{-- <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script> --}}
+        <script defer src="{{ mix('js/app.js') }}"></script>
+       
 
         @yield('style')
     </head>
