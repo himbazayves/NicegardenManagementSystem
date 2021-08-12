@@ -33,11 +33,11 @@
                                     <tr>
                                         <td>{{ $period }}</td>
                                         <td>{{ $data->count() }}</td>
-                                        <td>{{ format_money($data->where('type', 'income')->sum('amount')) }}</td>
-                                        <td>{{ format_money($data->where('type', 'expense')->sum('amount')) }}</td>
-                                        <td>{{ format_money($data->where('type', 'payment')->sum('amount')) }}</td>
-                                        <td>{{ format_money($data->where('payment_method_id', optional($methods->where('name', 'Cash')->first())->id)->sum('amount')) }}</td>
-                                        <td>{{ format_money($data->sum('amount')) }}</td>
+                                        <td>FRW{{ number_format($data->where('type', 'income')->sum('amount')) }}.</td>
+                                        <td>FRW{{ number_format($data->where('type', 'expense')->sum('amount')) }}.</td>
+                                        <td>FRW{{ number_format($data->where('type', 'payment')->sum('amount')) }}.</td>
+                                        <td>FRW{{ number_format($data->where('payment_method_id', optional($methods->where('name', 'Cash')->first())->id)->sum('amount')) }}.</td>
+                                        <td>FRW{{ number_format($data->sum('amount')) }}.</td>
                                         <td></td>
                                     </tr>
                                 @endforeach
@@ -76,14 +76,14 @@
                                     <tr>
                                         <td><a href="{{ route('clients.show', $client) }}">{{ $client->name }}<br>{{ $client->document_type }}-{{ $client->document_id }}</a></td>
                                         <td>{{ $client->sales->count() }}</td>
-                                        <td>{{ format_money($client->transactions->sum('amount')) }}</td>
+                                        <td>FRW{{ number_format($client->transactions->sum('amount')) }}.</td>
                                         <td>
                                             @if ($client->balance > 0)
-                                                <span class="text-success">{{ format_money($client->balance) }}</span>
+                                                <span class="text-success">FRW{{ number_format($client->balance) }}.</span>
                                             @elseif ($client->balance < 0.00)
-                                                <span class="text-danger">{{ format_money($client->balance) }}</span>
+                                                <span class="text-danger">FRW{{ number_format($client->balance) }}.</span>
                                             @else
-                                                {{ format_money($client->balance) }}
+                                                FRW{{ number_format($client->balance) }}.
                                             @endif
                                         </td>
                                         <td>
@@ -128,8 +128,8 @@
                                 @foreach($methods as $method)
                                     <tr>
                                         <td><a href="{{ route('methods.show', $method) }}">{{ $method->name }}</a></td>
-                                        <td>{{ format_money($transactionsperiods['Year']->where('payment_method_id', $method->id)->count()) }}</td>
-                                        <td>{{ format_money($transactionsperiods['Year']->where('payment_method_id', $method->id)->sum('amount')) }}</td>
+                                        <td>FRW{{ number_format($transactionsperiods['Year']->where('payment_method_id', $method->id)->count()) }}.</td>
+                                        <td>FRW{{ number_format($transactionsperiods['Year']->where('payment_method_id', $method->id)->sum('amount')) }}.</td>
                                         <td>
                                             <a href="{{ route('methods.show', $method) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="See Method">
                                                 <i class="tim-icons icon-zoom-split"></i>

@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 
 use App\ProductRequest;
+use App\ProductList;
 use App\Chef;
 use App\RestoChef;
 use App\StockManager;
@@ -63,8 +64,8 @@ class ProductRequestController extends Controller
     public function create()
     {
 
-        
-         return view('productRequest.create');
+         $products=ProductList::all();
+         return view('productRequest.create', compact('products'));
     }
 
     /**
@@ -92,6 +93,21 @@ class ProductRequestController extends Controller
             $requestProduct->user_id=Auth::user()->id;
             $requestProduct->save();
 
+            $quantity=$request->quantity;
+            $product=$request->product;
+
+            for($i=0 ; $i < count($product); $i++){
+              $data =[
+                  'product_request_id' => $requestProduct->id,
+                  'product_list_id' => $product[$i],
+                  'quantity' => $quantity[$i],
+              ] ;
+              
+            //   $requestedProduct 
+              DB::table('requested_products')->insert($data);
+            }
+
+
             return redirect()->route('requests.index')->withStatus('Your request submitted successfully.');
 
     }
@@ -104,9 +120,9 @@ class ProductRequestController extends Controller
      */
     public function show($id)
     {
-        $productRequest = ProductRequest::find($id);
+        $product = ProductRequest::find($id);
 
-        return view('productRequest.show', compact('productRequest'));
+        return view('productRequest.show', compact('product'));
     }
 
     /**
@@ -227,5 +243,11 @@ class ProductRequestController extends Controller
 
       
     
+    }
+
+    public function download($id){
+        $product = ProductRequest::find($id);
+
+        return view('productRequest.download', compact('product'));  
     }
 }

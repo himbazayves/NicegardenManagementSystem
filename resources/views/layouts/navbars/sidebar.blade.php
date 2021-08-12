@@ -242,12 +242,7 @@
                                     <p>All product request</p>
                                 </a>
                             </li>
-                            <li @if ($pageSlug == 'my_requests') class="active " @endif>
-                                <a href="{{ route('requests.my_requests') }}">
-                                    <i class="tim-icons icon-gift-2"></i>
-                                    <p>My requested product</p>
-                                </a>
-                            </li>
+                            
                             <li @if ($pageSlug == 'create_requests') class="active " @endif>
                                 <a href="{{ route('requests.create') }}">
                                     <i class="tim-icons icon-simple-add"></i>
@@ -256,6 +251,25 @@
                             </li>
                            
                             
+                        </ul>
+                    </div>
+
+
+                    <a data-toggle="collapse" href="#users" {{ $section == 'users' ? 'aria-expanded=true' : '' }}>
+                        <i class="tim-icons icon-badge" ></i>
+                        <span class="nav-link-text">My account</span>
+                        <b class="caret mt-1"></b>
+                    </a>
+                    <div class="collapse {{ $section == 'users' ? 'aria-expanded=true' : '' }}" id="users">
+                        <ul class="nav pl-4">
+                            <li @if ($pageSlug == 'profile') class="active " @endif>
+                                <a href="{{ route('profile.edit')  }}">
+                                    <i class="tim-icons icon-badge"></i>
+                                    <p>My profile</p>
+                                </a>
+                            </li>
+                          
+                           
                         </ul>
                     </div>
                 </li>

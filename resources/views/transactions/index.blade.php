@@ -42,7 +42,7 @@
                                         </td>
                                         <td style="max-width:150px">{{ $transaction->title }}</td>
                                         <td><a href="{{ route('methods.show', $transaction->method) }}">{{ $transaction->method->name }}</a></td>
-                                        <td>{{ format_money($transaction->amount) }}</td>
+                                        <td>FRW {{ number_format($transaction->amount) }} .</td>
                                         <td>{{ $transaction->reference }}</td>
                                         <td>
                                             @if ($transaction->client)

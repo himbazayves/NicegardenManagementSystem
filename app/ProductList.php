@@ -23,4 +23,9 @@ class ProductList extends Model
     {
         return $this->belongsTo('App\ProductMesaurement', 'product_mesaurement_id');
     }
+
+    public function requested_products()
+    {
+        return $this->hasMany('App\RequestedProduct');
+    }
 }

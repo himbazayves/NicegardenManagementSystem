@@ -36,4 +36,9 @@ class ProductRequest extends Model
     {
         return $this->belongsTo('App\User', 'requested_to');
     }
+
+    public function requested_products()
+    {
+        return $this->hasMany('App\RequestedProduct');
+    }
 }

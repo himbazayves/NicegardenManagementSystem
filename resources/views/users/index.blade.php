@@ -22,6 +22,7 @@
                             <thead class=" text-primary">
                                 <th scope="col">{{ __('Name') }}</th>
                                 <th scope="col">{{ __('Email') }}</th>
+                                <th scope="col">User type</th>
                                 <th scope="col">{{ __('Creation Date') }}</th>
                                 <th scope="col"></th>
                             </thead>
@@ -32,12 +33,34 @@
                                         <td>
                                             <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
                                         </td>
+                                        <td> 
+                                           
+                                           
+
+                                            @if ($user->userable_type=="App\Chef")
+                                            Chef
+                                            @elseif($user->userable_type=="App\Admin")
+                                            Admin
+                                            @elseif($user->userable_type=="App\Waiter")
+                                            Waiter
+                                            @elseif($user->userable_type=="App\Accountant")
+                                            Accountant
+                                            @elseif($user->userable_type=="App\StockManager")
+                                            Stock StockManager
+                                            @elseif($user->userable_type=="App\RestoChef")
+                                            Restaurent Chef
+                                            @else 
+                                            House Keeper  
+                                            @endif
+
+                                        </td>
                                         <td>{{ $user->created_at->format('d/m/Y H:i') }}</td>
                                         <td class="text-right">
                                                 <div class="dropdown">
                                                     <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <i class="tim-icons icon-settings-gear-63"></i>
                                                     </a>
+
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                         @if (auth()->user()->id != $user->id)
                                                             <form action="{{ route('users.destroy', $user) }}" method="post">

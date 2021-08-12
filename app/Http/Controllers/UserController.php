@@ -168,15 +168,30 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UserRequest $request, User $user)
+    // public function update(UserRequest $request, User $user)
+    public function update(Request $request, User $user)
     {
-        $hasPassword = $request->get('password');
+        // $hasPassword = $request->get('password');
 
-        $request->merge(['password' => Hash::make($request->get('password'))]);
+        // $request->merge(['password' => Hash::make($request->get('password'))]);
 
-        $request->except([$hasPassword ? '' : 'password']);
+        // $request->except([$hasPassword ? '' : 'password']);
+
+        // $user->update($request->all());
+
+
+        // $user=auth()->user();
+
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required',
+        ]);
 
         $user->update($request->all());
+        
+        $userType= $user->userable;
+        $userType->names=$user->name;
+        $userType->save();
 
         return redirect()->route('users.index')->withStatus('User successfully updated.');
     }

@@ -25,8 +25,14 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(ProfileRequest $request)
-    {
-        auth()->user()->update($request->all());
+    {   
+        $user=auth()->user();
+
+        $user->update($request->all());
+        
+        $userType= $user->userable;
+        $userType->names=$user->name;
+        $userType->save();
 
         return back()->withStatus('Profile successfully updated.');
     }

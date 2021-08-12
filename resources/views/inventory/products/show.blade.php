@@ -27,10 +27,10 @@
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->stock }}</td>
                                 <td>{{ $product->stock_defective }}</td>
-                                <td>{{ format_money($product->price) }}</td>
-                                <td>{{ format_money($product->solds->avg('price')) }}</td>
+                                <td>FRW {{ number_format($product->price) }}.</td>
+                                <td>FRW {{ number_format($product->solds->avg('price')) }}.</td>
                                 <td>{{ $product->solds->sum('qty') }}</td>
-                                <td>{{ format_money($product->solds->sum('total_amount')) }}</td>
+                                <td>FRW {{ number_format($product->solds->sum('total_amount')) }}.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -61,8 +61,8 @@
                                     <td>{{ date('d-m-y', strtotime($sold->created_at)) }}</td>
                                     <td><a href="{{ route('sales.show', $sold->sale_id) }}">{{ $sold->sale_id }}</a></td>
                                     <td>{{ $sold->qty }}</td>
-                                    <td>{{ format_money($sold->price) }}</td>
-                                    <td>{{ format_money($sold->total_amount) }}</td>
+                                    <td>FRW {{ number_format($sold->price) }}.</td>
+                                    <td>FRW {{ number_format($sold->total_amount) }}.</td>
                                     <td class="td-actions text-right">
                                         <a href="{{ route('sales.show', $sold->sale_id) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="View Sale">
                                             <i class="tim-icons icon-zoom-split"></i>

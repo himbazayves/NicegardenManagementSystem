@@ -50,7 +50,7 @@
                                 <td><a href="{{ route('clients.show', $sale->client) }}">{{ $sale->client->name }}<br>{{ $sale->client->document_type }}-{{ $sale->client->document_id }}</a></td>
                                 <td>{{ $sale->products->count() }}</td>
                                 <td>{{ $sale->products->sum('qty') }}</td>
-                                <td>{{ format_money($sale->products->sum('total_amount')) }}</td>
+                                <td>FRW {{ number_format($sale->products->sum('total_amount')) }}.</td>
                                 <td>{!! $sale->finalized_at ? 'Completed at<br>'.date('d-m-y', strtotime($sale->finalized_at)) : (($sale->products->count() > 0) ? 'TO FINALIZE' : 'ON HOLD') !!}</td>
                             </tr>
                         </tbody>
@@ -93,8 +93,8 @@
                                     <td><a href="{{ route('categories.show', $sold_product->product->category) }}">{{ $sold_product->product->category->name }}</a></td>
                                     <td><a href="{{ route('products.show', $sold_product->product) }}">{{ $sold_product->product->name }}</a></td>
                                     <td>{{ $sold_product->qty }}</td>
-                                    <td>{{ format_money($sold_product->price) }}</td>
-                                    <td>{{ format_money($sold_product->total_amount) }}</td>
+                                    <td>FRW {{ number_format($sold_product->price) }} .</td>
+                                    <td>FRW {{ number_format($sold_product->total_amount) }} .</td>
                                     <td class="td-actions text-right">
                                         @if(!$sale->finalized_at)
                                             <a href="{{ route('sales.product.edit', ['sale' => $sale, 'soldproduct' => $sold_product]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Pedido">

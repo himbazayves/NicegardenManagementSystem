@@ -15,7 +15,7 @@
                             @include('alerts.success')
 
                             <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                <label>Name</label>
+                                <label>Names</label>
                                 <input type="text" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Name" value="{{ old('name', auth()->user()->name) }}">
                                 @include('alerts.feedback', ['field' => 'name'])
                             </div>
@@ -75,7 +75,7 @@
                             <div class="block block-three"></div>
                             <div class="block block-four"></div>
                             <a href="#">
-                                <img class="avatar" src="{{ asset('assets/img/emilyz.jpg') }}" alt="">
+                                <img class="avatar" src="{{ asset('assets/img/user.png') }}" alt="">
                                 <h5 class="title">{{ auth()->user()->name }}</h5>
                             </a>
                             <p class="description"></p>

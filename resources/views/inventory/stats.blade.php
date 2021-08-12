@@ -27,8 +27,8 @@
                                     <td>{{ $soldproduct->product->name }}</td>
                                     <td>{{ $soldproduct->product->stock }}</td>
                                     <td>{{ $soldproduct->total_qty }}</td>
-                                    <td>{{ format_money(round($soldproduct->avg_price, 2)) }}</td>
-                                    <td>{{ format_money($soldproduct->incomes) }}</td>
+                                    <td>FRW {{ number_format(round($soldproduct->avg_price, 2)) }}.</td>
+                                    <td>FRW {{ number_format($soldproduct->incomes) }}.</td>
                                     <td class="td-actions text-right">
                                         <a href="{{ route('products.show', $soldproduct->product) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">
                                             <i class="tim-icons icon-zoom-split"></i>
@@ -65,7 +65,7 @@
                                         <td><a href="{{ route('categories.show', $soldproduct->product->category) }}">{{ $soldproduct->product->category->name }}</a></td>
                                         <td><a href="{{ route('products.show', $soldproduct->product) }}">{{ $soldproduct->product->name }}</a></td>
                                         <td>{{ $soldproduct->total_qty }}</td>
-                                        <td>{{ format_money($soldproduct->incomes) }}</td>
+                                        <td>FRW {{ number_format($soldproduct->incomes) }}.</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -96,7 +96,7 @@
                                         <td><a href="{{ route('categories.show', $soldproduct->product->category) }}">{{ $soldproduct->product->category->name }}</a></td>
                                         <td><a href="{{ route('products.show', $soldproduct->product) }}">{{ $soldproduct->product->name }}</a></td>
                                         <td>{{ $soldproduct->total_qty }}</td>
-                                        <td>{{ format_money(round($soldproduct->avg_price, 2)) }}</td>
+                                        <td>FRW {{ number_format(round($soldproduct->avg_price, 2)) }}.</td>
                                     </tr>
                                 @endforeach
                             </tbody>

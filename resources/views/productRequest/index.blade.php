@@ -129,8 +129,11 @@
                                         @endif
                                     </td>
                                 
-                                   
+                                    
                                     <td class="td-actions text-right">
+                                        <a href="{{ route('product-request.download', $request) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Download">
+                                            <i class="tim-icons icon-cloud-download-93"></i>
+                                        </a>
                                         <a href="{{ route('requests.show', $request) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">
                                             <i class="tim-icons icon-zoom-split"></i>
                                         </a>
@@ -162,7 +165,7 @@
 @else
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="card card-tasks">
                 <div class="card-header">
                     <div class="row">
@@ -202,7 +205,9 @@
                                             </a> --}}
 
 
-                                            
+                                            <a href="{{ route('product-request.download', $request) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Download">
+                                                <i class="tim-icons icon-cloud-download-93"></i>
+                                            </a>
                                                 <a href="{{ route('requests.show', $request) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">
                                                     <i class="tim-icons icon-zoom-split"></i>
                                                 </a>
@@ -227,7 +232,7 @@
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="card card-tasks">
                 <div class="card-header">
                     <div class="row">
@@ -260,7 +265,11 @@
                                             {{$request->user->name}}
                                           
                                         </td>
-                                        <td> <a href="{{ route('requests.show', $request) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">
+                                        <td> 
+                                            <a href="{{ route('product-request.download', $request) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Download">
+                                                <i class="tim-icons icon-cloud-download-93"></i>
+                                            </a>
+                                            <a href="{{ route('requests.show', $request) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">
                                             <i class="tim-icons icon-zoom-split"></i>
                                         </a></td>
                                     </tr>

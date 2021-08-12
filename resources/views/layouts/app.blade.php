@@ -22,6 +22,8 @@
         <link href="{{ asset('assets') }}/css/white-dashboard.css?v=1.0.0" rel="stylesheet" />
         <link href="{{ asset('assets') }}/css/theme.css" rel="stylesheet" />
         {{-- <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script> --}}
+
+        @yield('style')
     </head>
     <body class="white-content {{ $class ?? '' }}">
         @auth()
@@ -242,44 +244,7 @@ $('#cmd').click(function () {
 </script> --}}
 
 
-<script>
-    (function () {
-        var
-         form = $('.form'),
-         cache_width = form.width(),
-         a4 = [595.28, 841.89]; // for a4 size paper width and height
 
-        $('#create_pdf').on('click', function () {
-            $('body').scrollTop(0);
-            // $('#table');
-            createPDF();
-        });
-        //create pdf
-        function createPDF() {
-            getCanvas().then(function (canvas) {
-                var
-                 img = canvas.toDataURL("image/png"),
-                 doc = new jsPDF({
-                     unit: 'px',
-                     format: 'a4'
-                 });
-                doc.addImage(img, 'JPEG', 20, 20);
-                doc.save('bhavdip-html-to-pdf.pdf');
-                form.width(cache_width);
-            });
-        }
-
-        // create canvas object
-        function getCanvas() {
-            form.width((a4[0] * 1.33333) - 80).css('max-width', 'none');
-            return html2canvas(form, {
-                imageTimeout: 2000,
-                removeContainer: true
-            });
-        }
-
-    }());
-</script>
 <script>
     (function ($) {
         $.fn.html2canvas = function (options) {
@@ -341,7 +306,8 @@ $('#cmd').click(function () {
         };
     })(jQuery);
 </script>
-
+  
+@yield('javascript')
 
     </body>
 </html>

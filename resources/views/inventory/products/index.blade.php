@@ -36,7 +36,7 @@
                                         href="{{ route('categories.show', $product->category) }}">{{ $product->category->name }}</a>
                                 </td>
                                 <td>{{ $product->name }}</td>
-                                <td>{{ format_money($product->price) }}</td>
+                                <td>FRW {{ number_format($product->price) }} .</td>
                                 <td>{{ $product->stock }}</td>
                                 <td>{{ $product->stock_defective }}</td>
                                 <td>{{ $product->solds->sum('qty') }}</td>
