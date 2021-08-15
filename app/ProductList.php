@@ -21,7 +21,7 @@ class ProductList extends Model
 
     public function measurement()
     {
-        return $this->belongsTo('App\ProductMesaurement', 'product_mesaurement_id');
+        return $this->belongsTo('App\ProductMeasurement', 'product_mesaurement_id');
     }
 
     public function requested_products()

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ProductList;
 use App\ProductCategory;
-use App\ProductMesaurement;
+use App\ProductMeasurement;
 
 class ProductListController extends Controller
 {
@@ -29,7 +29,7 @@ class ProductListController extends Controller
     public function create()
     {
         $categories = ProductCategory::all();
-        $measurements = ProductMesaurement::all();
+        $measurements = ProductMeasurement::all();
 
         return view('inventory.products_list.create',["categories"=>$categories,"measurements"=>$measurements ]);
     }
