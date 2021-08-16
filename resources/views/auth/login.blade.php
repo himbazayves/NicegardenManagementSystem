@@ -34,7 +34,7 @@
                     <button type="submit" href="" class="btn btn-primary btn-lg btn-block mb-3">Log in</button>
                     <div class="pull-left">
                         <h6>
-                            <a href="{{ route('register') }}" class="link footer-link">Forgot password ? click here</a>
+                            <a  href="{{ route('forget.password.get') }}" class="link footer-link">Forgot password ? click here</a>
                         </h6>
                     </div>
                     {{-- <div class="pull-right">
