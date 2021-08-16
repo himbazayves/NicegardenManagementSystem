@@ -59,25 +59,24 @@
                             </div>
 
 
-                            <div class="form-group{{ $errors->has('reference') ? ' has-danger' : '' }}">
+                            {{-- <div class="form-group{{ $errors->has('reference') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-phone">Reference</label>
                                 <input type="text" name="reference" id="input-phone"
                                     class="form-control form-control-alternative{{ $errors->has('reference') ? ' is-invalid' : '' }}"
                                     placeholder="Reference" value="{{ old('reference') }}" required>
                                 @include('alerts.feedback', ['field' => 'reference'])
-                            </div>
+                            </div> --}}
 
-                            <div class="form-group{{ $errors->has('reference') ? ' has-danger' : '' }}">
+                            {{-- <div class="form-group{{ $errors->has('reference') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-phone">Description</label>
-                                {{-- <input type="text" name="reference" id="input-phone"
-                                    class="form-control form-control-alternative{{ $errors->has('reference') ? ' is-invalid' : '' }}"
-                                    placeholder="Reference" value="{{ old('reference') }}" required> --}}
-
+                             
                                     <textarea name="description" id="" cols="30" rows="10" value="{{ old('description') }}"
                                     class="form-control form-control-alternative{{ $errors->has('description') ? ' is-invalid' : '' }}" required>
                                    </textarea>
                                 @include('alerts.feedback', ['field' => 'description'])
-                            </div>
+                            </div> --}}
+
+                            <input type="hidden" name="description">
 
 
 

@@ -208,10 +208,10 @@
                                             <a href="{{ route('product-request.download', $request) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Download">
                                                 <i class="tim-icons icon-cloud-download-93"></i>
                                             </a>
-                                                <a href="{{ route('requests.show', $request) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">
+                                                <a href="{{ route('requests.show', $request->id) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">
                                                     <i class="tim-icons icon-zoom-split"></i>
                                                 </a>
-                                                <a href="{{ route('requests.edit', $request) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Provider">
+                                                <a href="{{ route('requests.edit', $request->id) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Provider">
                                                     <i class="tim-icons icon-pencil"></i>
                                                 </a>
                                                 <form action="{{ route('requests.destroy', $request) }}" method="post" class="d-inline">
@@ -269,7 +269,7 @@
                                             <a href="{{ route('product-request.download', $request) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Download">
                                                 <i class="tim-icons icon-cloud-download-93"></i>
                                             </a>
-                                            <a href="{{ route('requests.show', $request) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">
+                                            <a href="{{ route('requests.show', $request->id) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">
                                             <i class="tim-icons icon-zoom-split"></i>
                                         </a></td>
                                     </tr>

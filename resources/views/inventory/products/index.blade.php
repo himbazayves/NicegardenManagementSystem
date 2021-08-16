@@ -44,7 +44,7 @@
                                 <td class="td-actions text-right">
 
                                     <a href="{{ route('products.stock.topUp', $product) }}" class="btn btn-link"
-                                        data-toggle="tooltip" data-placement="bottom" title="Edit Product">
+                                        data-toggle="tooltip" data-placement="bottom" title="Topup Product">
                                         <i class="tim-icons icon-simple-add"></i>
                                     </a>
                                     <a href="{{ route('products.show', $product) }}" class="btn btn-link"

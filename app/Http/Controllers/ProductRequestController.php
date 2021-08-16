@@ -77,7 +77,7 @@ class ProductRequestController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'description'=> 'required',
+            
             'title'=> 'required',
             'requestTo'=>'required',
             'person'=>'required',
@@ -88,7 +88,7 @@ class ProductRequestController extends Controller
             $requestProduct->requested_to=$request->person;
             $requestProduct->description=$request->description;
             $requestProduct->title=$request->title;
-            $requestProduct->reference=$request->reference;
+            // $requestProduct->reference=$request->reference;
             $requestProduct->description=$request->description;
             $requestProduct->user_id=Auth::user()->id;
             $requestProduct->save();
@@ -118,10 +118,11 @@ class ProductRequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($request)
     {
-        $product = ProductRequest::find($id);
-
+       
+        $product = ProductRequest::find($request);
+        
         return view('productRequest.show', compact('product'));
     }
 
@@ -131,9 +132,12 @@ class ProductRequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($request)
     {
-        //
+        $product = ProductRequest::find($request);
+        $products=ProductList::all();
+        
+        return view('productRequest.edit', compact('product', 'products'));
     }
 
     /**
