@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDescriptionToProductRequest2 extends Migration
+class AddNullableDescriptionToProductRequest extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddDescriptionToProductRequest2 extends Migration
     public function up()
     {
         Schema::table('product_requests', function (Blueprint $table) {
-            $table->dropColumn('description');
+            $table->string('description')->nullable();
         });
     }
 
