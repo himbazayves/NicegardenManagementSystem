@@ -1,4 +1,4 @@
-@extends('layouts.app', ['class' => 'login-page', 'page' => 'Laravel Inventory', 'contentClass' => 'login-page', 'section' => 'auth'])
+@extends('layouts.app', ['class' => 'login-page', 'page' => 'Home', 'contentClass' => 'login-page', 'section' => 'auth'])
 
 @section('content')
     <div class="col-lg-4 col-md-6 ml-auto mr-auto">
@@ -26,7 +26,7 @@
                                 <i class="tim-icons icon-lock-circle"></i>
                             </div>
                         </div>
-                        <input type="password" placeholder="Clave" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}">
+                        <input type="password" placeholder="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}">
                         @include('alerts.feedback', ['field' => 'password'])
                     </div>
                 </div>

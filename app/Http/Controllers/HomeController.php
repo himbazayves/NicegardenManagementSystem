@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\SoldProduct;
 use App\Transaction;
 use App\PaymentMethod;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,8 +24,10 @@ class HomeController extends Controller
         $anualsales = $this->getAnnualSales();
         $anualclients = $this->getAnnualClients();
         $anualproducts = $this->getAnnualProducts();
+    //   $userType=Auth::user()->userable_type;
         
         return view('dashboard', [
+            // 'userType'=>$userType,
             'monthlybalance'            => $monthlyBalance,
             'monthlybalancebymethod'    => $monthlyBalanceByMethod,
             'lasttransactions'          => Transaction::latest()->limit(20)->get(),

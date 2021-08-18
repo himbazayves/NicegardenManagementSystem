@@ -116,14 +116,17 @@ class SaleController extends Controller
     }
 
     public function storeproduct(Request $request, Sale $sale, SoldProduct $soldProduct)
+    // public function storeproduct(Request $request, )
     {
-        $request->merge(['total_amount' => $request->get('price') * $request->get('qty')]);
 
-        $soldProduct->create($request->all());
+        echo "Yes I'm here ";
+        // $request->merge(['total_amount' => $request->get('price') * $request->get('qty')]);
 
-        return redirect()
-            ->route('sales.show', ['sale' => $sale])
-            ->withStatus('Product successfully registered.');
+        // // $soldProduct->create($request->all());
+
+        // return redirect()
+        //     // ->route('sales.show', ['sale' => $sale])
+        //     ->withStatus('Product successfully registered.');
     }
 
     public function editproduct(Sale $sale, SoldProduct $soldproduct)

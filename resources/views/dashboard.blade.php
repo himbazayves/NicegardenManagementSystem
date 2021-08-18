@@ -1,7 +1,7 @@
 @extends('layouts.app', ['pageSlug' => 'dashboard', 'page' => 'Dashboard', 'section' => ''])
 
 @section('content')
-@if(Auth::user()->userable_type = "App\Admin")
+@if(Auth::user()->userable_type == "App\Admin")
     <div class="row">
         <div class="col-12">
             <div class="card card-chart">

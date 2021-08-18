@@ -10,7 +10,7 @@
             <li>
 
             {{-- Admin sidebar --}}
-            @if(Auth::user()->userable_type=="App\Admin")
+            @if($userType=="App\Admin")
                 <a data-toggle="collapse" href="#transactions" {{ $section == 'transactions' ? 'aria-expanded=true' : '' }}>
                     <i class="tim-icons icon-bank" ></i>
                     <span class="nav-link-text">Transactions</span>

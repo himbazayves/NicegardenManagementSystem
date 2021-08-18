@@ -46,7 +46,7 @@
                                             @elseif($user->userable_type=="App\Accountant")
                                             Accountant
                                             @elseif($user->userable_type=="App\StockManager")
-                                            Stock StockManager
+                                            Stock Manager
                                             @elseif($user->userable_type=="App\RestoChef")
                                             Restaurent Chef
                                             @else 
