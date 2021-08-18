@@ -68,10 +68,11 @@
                             <td>
                                 @if ($receiptAmount-$provider->transactions->sum('amount') !=0)
                                 <label class="badge badge-warning">FRW
-                                    {{number_format(abs($receiptAmount-$provider->transactions->sum('amount')))}}</label>
+                                    {{number_format(abs($receiptAmount + $provider->transactions->sum('amount')))}}</label>
                                 @else
                                 <label class="badge badge-success">FRW
-                                    {{number_format(abs($receiptAmount-$provider->transactions->sum('amount')))}}</label>
+                                    0.00
+                                    {{-- {{number_format(abs($receiptAmount-$provider->transactions->sum('amount')))}}</label> --}}
                                 @endif
 
                         </tr>
