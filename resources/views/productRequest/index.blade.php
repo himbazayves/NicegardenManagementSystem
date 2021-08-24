@@ -124,17 +124,17 @@
                                 <td>{{$request->created_at->diffForHumans()}}</td>
                                 <td>{{ $request->title }}</td>
                                 <td>
-                                    {{-- {{$request->requestedTo->name}} --}}
+                                    {{-- {{$request->requestedTo->name}}
                                     @php
 
 
-                                //    echo  \App\User::where(['id' => $request->requested_to]);
-                                // echo $request->requestedTo; 
+                                   echo  \App\User::where(['id' => $request->requested_to]);
+                                echo $request->requestedTo; 
                                 echo $request->requested_to;
 
-                                    @endphp
+                                    @endphp --}}
 
-                                  {{-- {{$requestedTo->name}} --}}
+                                  {{$requestedTo->name}}
                                 </td>
 
                                 <td>
