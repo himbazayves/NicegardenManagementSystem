@@ -128,11 +128,11 @@
                                     @php
 
 
-                                   $requestedTo= \App\User::where(['id' => $request->requested_to])->first();
+                                   echo  \App\User::where(['id' => $request->requested_to])->first()->name;
 
                                     @endphp
 
-                                  {{$requestedTo->name}}
+                                  {{-- {{$requestedTo->name}} --}}
                                 </td>
 
                                 <td>
