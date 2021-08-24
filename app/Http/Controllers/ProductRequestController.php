@@ -28,7 +28,7 @@ class ProductRequestController extends Controller
         $user=Auth::user();
         if($user->userable_type=="App\Admin"){
             $productRequests = productRequest::latest()->paginate(25);  
-            // return view('productRequest.index',['productRequests'=>$productRequests] ); 
+            return view('productRequest.index',['productRequests'=>$productRequests] ); 
         }
         else{
 
@@ -38,17 +38,8 @@ class ProductRequestController extends Controller
            
               
         $requestedProducts = productRequest::Where("requested_to", $user->id)->latest()->paginate(25);
-
        
-
-        }
-
-        $check = ProductRequest::all();
-
-        foreach($check as $c){
-         echo $c;
-       
-        // return view('productRequest.index',['requestedProducts'=>$requestedProducts,'myRequests'=>$myRequests] );
+        return view('productRequest.index',['requestedProducts'=>$requestedProducts,'myRequests'=>$myRequests] );
         }
 
         
@@ -112,15 +103,12 @@ class ProductRequestController extends Controller
                   'quantity' => $quantity[$i],
               ] ;
               
-              
-            //  $requestedProduct = new Requeste
+            //   $requestedProduct 
               DB::table('requested_products')->insert($data);
             }
-           
 
-            return $request;
 
-            // return redirect()->route('requests.index')->withStatus('Your request submitted successfully.');
+            return redirect()->route('requests.index')->withStatus('Your request submitted successfully.');
 
     }
 
