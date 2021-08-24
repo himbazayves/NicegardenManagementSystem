@@ -128,7 +128,7 @@
                                     @php
 
 
-                                   echo  \App\User::where(['id' => $request->requested_to])->first()->id;
+                                   echo  \App\User::where(['id' => $request->requested_to]);
 
                                     @endphp
 
