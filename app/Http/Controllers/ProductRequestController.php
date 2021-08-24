@@ -158,9 +158,11 @@ class ProductRequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($request)
     {
-        //
+        $product = ProductRequest::find($request);
+        $product->delete();
+        return redirect()->route('requests.index')->withStatus('Your request deleted successfully.');
     }
 
 
