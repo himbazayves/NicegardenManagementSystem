@@ -134,7 +134,7 @@
 
                                     @endphp --}}
 
-                                  {{$requestedTo->name}}
+                                  {{$requestedTo}}
                                 </td>
 
                                 <td>
