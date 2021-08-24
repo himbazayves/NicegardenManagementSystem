@@ -129,7 +129,8 @@
 
 
                                 //    echo  \App\User::where(['id' => $request->requested_to]);
-                                echo $request->requestedTo['id']; 
+                                echo $request->requestedTo; 
+                                echo $request->requested_to;
 
                                     @endphp
 
