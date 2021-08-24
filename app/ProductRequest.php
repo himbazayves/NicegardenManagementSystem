@@ -34,7 +34,7 @@ class ProductRequest extends Model
 
     public function requestedTo()
     {
-        return $this->belongsTo('App/User', 'requested_to');
+        return $this->belongsTo('App\User', 'requested_to');
     }
 
     public function requested_products()
