@@ -106,9 +106,11 @@ class ProductRequestController extends Controller
             //   $requestedProduct 
               DB::table('requested_products')->insert($data);
             }
+           
 
+            return $request;
 
-            return redirect()->route('requests.index')->withStatus('Your request submitted successfully.');
+            // return redirect()->route('requests.index')->withStatus('Your request submitted successfully.');
 
     }
 
