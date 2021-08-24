@@ -34,7 +34,7 @@
                                 @foreach ($transactions as $transaction)
                                     <tr>
                                         <td> {{ date('d-m-y', strtotime($transaction->created_at)) }}</td>
-                                        <td><a href="{{ route('providers.show', $transaction->provider->id) }}">{{ $transaction->provider->name }}</a></td>
+                                        {{-- <td><a href="{{ route('providers.show', $transaction->provider->id) }}">{{ $transaction->provider->name }}</a></td> --}}
                                         <td> {{ $transaction->title }}</td>
                                         <td><a href="{{ route('methods.show', $transaction->method) }}">{{ $transaction->method->name }}</a></td>
                                         <td> FRW {{ number_format($transaction->amount) }}.</td>
