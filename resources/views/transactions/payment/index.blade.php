@@ -29,6 +29,12 @@
                                 <th scope="col"></th>
                             </thead>
                             <tbody>
+
+                                @if($transactions->count()==0)
+                                <tr>
+                                    No data
+                                </tr>
+                                @else
                                 @foreach ($transactions as $transaction)
                                     <tr>
                                         <td> {{ date('d-m-y', strtotime($transaction->created_at)) }}</td>
@@ -52,6 +58,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
