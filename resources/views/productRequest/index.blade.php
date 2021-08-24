@@ -128,7 +128,8 @@
                                     @php
 
 
-                                   echo  \App\User::where(['id' => $request->requested_to]);
+                                //    echo  \App\User::where(['id' => $request->requested_to]);
+                                echo $request->requestedTo; 
 
                                     @endphp
 
